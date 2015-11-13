@@ -1,0 +1,4 @@
+rfid:
+    resource: "@RfidBundle/Resources/config/routing.yml"
+    prefix:   /
+

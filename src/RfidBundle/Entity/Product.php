@@ -1,0 +1,345 @@
+<?php
+
+namespace RfidBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Product
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="RfidBundle\Entity\ProductRepository")
+ */
+class Product
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uniqueRetailerId", type="string", length=255)
+     */
+    private $uniqueRetailerId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ean", type="string", length=255)
+     */
+    private $ean;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="category", type="string", length=255)
+     */
+    private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="collection", type="string", length=255)
+     */
+    private $collection;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="productCode", type="string", length=255)
+     */
+    private $productCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shortDescription", type="string", length=255)
+     */
+    private $shortDescription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price", type="string", length=255)
+     */
+    private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attributes", type="string", length=255)
+     */
+    private $attributes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="origin", type="string", length=255)
+     */
+    private $origin;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set uniqueRetailerId
+     *
+     * @param string $uniqueRetailerId
+     *
+     * @return Product
+     */
+    public function setUniqueRetailerId($uniqueRetailerId)
+    {
+        $this->uniqueRetailerId = $uniqueRetailerId;
+
+        return $this;
+    }
+
+    /**
+     * Get uniqueRetailerId
+     *
+     * @return string
+     */
+    public function getUniqueRetailerId()
+    {
+        return $this->uniqueRetailerId;
+    }
+
+    /**
+     * Set ean
+     *
+     * @param string $ean
+     *
+     * @return Product
+     */
+    public function setEan($ean)
+    {
+        $this->ean = $ean;
+
+        return $this;
+    }
+
+    /**
+     * Get ean
+     *
+     * @return string
+     */
+    public function getEan()
+    {
+        return $this->ean;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set collection
+     *
+     * @param string $collection
+     *
+     * @return Product
+     */
+    public function setCollection($collection)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return string
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * Set productCode
+     *
+     * @param string $productCode
+     *
+     * @return Product
+     */
+    public function setProductCode($productCode)
+    {
+        $this->productCode = $productCode;
+
+        return $this;
+    }
+
+    /**
+     * Get productCode
+     *
+     * @return string
+     */
+    public function getProductCode()
+    {
+        return $this->productCode;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Product
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set shortDescription
+     *
+     * @param string $shortDescription
+     *
+     * @return Product
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get shortDescription
+     *
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return Product
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set attributes
+     *
+     * @param string $attributes
+     *
+     * @return Product
+     */
+    public function setAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return string
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Set origin
+     *
+     * @param string $origin
+     *
+     * @return Product
+     */
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Get origin
+     *
+     * @return string
+     */
+    public function getOrigin()
+    {
+        return $this->origin;
+    }
+}
+

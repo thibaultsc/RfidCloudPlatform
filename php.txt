@@ -1,0 +1,6 @@
+cd ../../../../../../wamp/www/rfidcloudplatform
+set PATH=%PATH%;C:\wamp\bin\php\php5.5.12
+set PATH=%PATH%;C:\Python34;C:\Python34\Scripts
+set PATH=%PATH%;C:\Program Files\Git\bin;
+set PATH=%PATH%;C:\Python34\AWS-ElasticBeanstalk-CLI-2.6.4\AWSDevTools\Linux\AWSDevTools-RepositorySetup.sh
+set PATH=%PATH%;C:\Program Files\nodejs\

@@ -1,0 +1,190 @@
+<?php
+
+namespace RfidBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * store
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Store
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="retailer", type="string", length=255)
+     */
+    private $retailer;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="enabled", type="string", length=255)
+     */
+    private $enabled;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return store
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return store
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return store
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set retailer
+     *
+     * @param string $retailer
+     *
+     * @return store
+     */
+    public function setRetailer($retailer)
+    {
+        $this->retailer = $retailer;
+
+        return $this;
+    }
+
+    /**
+     * Get retailer
+     *
+     * @return string
+     */
+    public function getRetailer()
+    {
+        return $this->retailer;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param string $enabled
+     *
+     * @return store
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return string
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+}
+
