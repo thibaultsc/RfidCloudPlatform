@@ -5,12 +5,12 @@ namespace RfidBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Retailer
+ * Package
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Retailer
+class Package
 {
     /**
      * @var integer
@@ -27,14 +27,7 @@ class Retailer
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-    
-    
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Package")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $package;
+
 
     /**
      * Get id
@@ -51,7 +44,7 @@ class Retailer
      *
      * @param string $name
      *
-     * @return Retailer
+     * @return Package
      */
     public function setName($name)
     {
@@ -69,28 +62,5 @@ class Retailer
     {
         return $this->name;
     }
-
-    /**
-     * Set package
-     *
-     * @param string $package
-     *
-     * @return Retailer
-     */
-    public function setPackage($package)
-    {
-        $this->package = $package;
-
-        return $this;
-    }
-
-    /**
-     * Get package
-     *
-     * @return string
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
 }
+
