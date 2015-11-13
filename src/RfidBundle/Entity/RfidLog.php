@@ -62,9 +62,8 @@ class RfidLog
     private $zone;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="user", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\RfidLogType")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
