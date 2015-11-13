@@ -5,12 +5,12 @@ namespace RfidBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Zone
+ * StoreType
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Zone
+class DeviceType
 {
     /**
      * @var integer
@@ -22,23 +22,24 @@ class Zone
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Store")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $store;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="model", type="string", length=255, nullable=true)
+     */
+    private $model;
 
     /**
-     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\ZoneType")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Retailer")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $type;
+    private $private;
 
     /**
      * @var boolean
@@ -46,8 +47,6 @@ class Zone
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
-
-
 
 
     /**
@@ -61,35 +60,11 @@ class Zone
     }
 
     /**
-     * Set store
-     *
-     * @param string $store
-     *
-     * @return Zone
-     */
-    public function setStore($store)
-    {
-        $this->store = $store;
-
-        return $this;
-    }
-
-    /**
-     * Get store
-     *
-     * @return string
-     */
-    public function getStore()
-    {
-        return $this->store;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
      *
-     * @return Zone
+     * @return StoreType
      */
     public function setName($name)
     {
@@ -108,36 +83,37 @@ class Zone
         return $this->name;
     }
 
+
     /**
-     * Set type
+     * Set front
      *
-     * @param string $type
+     * @param boolean $front
      *
-     * @return Zone
+     * @return StoreType
      */
-    public function setType($type)
+    public function setFront($front)
     {
-        $this->type = $type;
+        $this->front = $front;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get front
      *
-     * @return string
+     * @return boolean
      */
-    public function getType()
+    public function getFront()
     {
-        return $this->type;
+        return $this->front;
     }
 
     /**
      * Set enabled
      *
-     * @param string $enabled
+     * @param boolean $enabled
      *
-     * @return Zone
+     * @return StoreType
      */
     public function setEnabled($enabled)
     {
@@ -149,7 +125,7 @@ class Zone
     /**
      * Get enabled
      *
-     * @return string
+     * @return boolean
      */
     public function getEnabled()
     {
