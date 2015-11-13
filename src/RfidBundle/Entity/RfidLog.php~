@@ -284,28 +284,5 @@ class RfidLog
     {
         return $this->product;
     }
-
-    /**
-     * Set type
-     *
-     * @param \RfidBundle\Entity\RfidLogType $type
-     *
-     * @return RfidLog
-     */
-    public function setType(\RfidBundle\Entity\RfidLogType $type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \RfidBundle\Entity\RfidLogType
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 }
+
