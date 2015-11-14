@@ -8,6 +8,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use RfidBundle\Entity\StoreType;
 use RfidBundle\Entity\ZoneType;
 use RfidBundle\Entity\DeviceType;
+use RfidBundle\Entity\Package;
+use RfidBundle\Entity\RfidLogType;
 
 class LoadData implements FixtureInterface
 {
@@ -35,7 +37,8 @@ class LoadData implements FixtureInterface
     $zoneTypeArray = array(
       array('Sales Floor',true, true),
       array('Back room',false, true),
-      array('Transit',false, false)
+      array('Transit',false, false),
+      array('Sold', false, false)
     );
 
     foreach ($zoneTypeArray as $zoneTypeElement) {
@@ -52,7 +55,7 @@ class LoadData implements FixtureInterface
       array('POS reader','Any'),
       array('Handheld device','Any'),
       array('Fitting room reader','Any'),
-      array('Alarm gates','Any'),
+      array('Alarm gates','Any')
     );
 
     foreach ($deviceTypeArray as $deviceTypeElement) {
@@ -61,6 +64,34 @@ class LoadData implements FixtureInterface
       $deviceType->setModel($deviceTypeElement[1]);
       // On la persiste
       $manager->persist($deviceType);
+    }
+    
+    // Package lists
+    $packageArray = array(
+      array('Free'),
+      array('Pro'),
+      array('Unlimited')
+    );
+
+    foreach ($packageArray as $packageElement) {
+      $package = new Package();
+      $package->setName($packageElement[0]);
+      // On la persiste
+      $manager->persist($package);
+    }
+    
+    // Package lists
+    $rfidLogTypeArray = array(
+      array('Free'),
+      array('Pro'),
+      array('Unlimited')
+    );
+
+    foreach ($rfidLogTypeArray as $rfidLogTypeElement) {
+      $rfidLogType = new RfidLogType();
+      $rfidLogType->setName($rfidLogTypeElement[0]);
+      // On la persiste
+      $manager->persist($rfidLogType);
     }
     
     

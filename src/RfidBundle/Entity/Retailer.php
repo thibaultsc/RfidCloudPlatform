@@ -38,6 +38,7 @@ class Retailer
      */
     private $package;
     
+    
     /**
      * @var boolean
      *

@@ -71,7 +71,7 @@ class RfidLog
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Device")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $device;
 
@@ -80,6 +80,13 @@ class RfidLog
      * @ORM\JoinColumn(nullable=true)
      */
     private $product;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="inStock", type="boolean")
+     */
+    private $inStock = true;
 
 
     /**
@@ -308,5 +315,29 @@ class RfidLog
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set inStock
+     *
+     * @param boolean $inStock
+     *
+     * @return RfidLog
+     */
+    public function setInStock($inStock)
+    {
+        $this->inStock = $inStock;
+
+        return $this;
+    }
+
+    /**
+     * Get inStock
+     *
+     * @return boolean
+     */
+    public function getInStock()
+    {
+        return $this->inStock;
     }
 }

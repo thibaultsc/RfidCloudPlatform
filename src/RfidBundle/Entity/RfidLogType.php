@@ -29,27 +29,20 @@ class RfidLogType
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="inStock", type="boolean")
-     */
-    private $inStock;
     
     
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Retailer")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $private = true;
+    private $private;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
      * Get id
@@ -83,30 +76,6 @@ class RfidLogType
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set inStock
-     *
-     * @param boolean $inStock
-     *
-     * @return RfidLogType
-     */
-    public function setInStock($inStock)
-    {
-        $this->inStock = $inStock;
-
-        return $this;
-    }
-
-    /**
-     * Get inStock
-     *
-     * @return boolean
-     */
-    public function getInStock()
-    {
-        return $this->inStock;
     }
 
     /**
