@@ -3,6 +3,7 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Zone
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Zone
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -45,7 +47,7 @@ class Zone
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
 
 

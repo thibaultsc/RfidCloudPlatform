@@ -3,7 +3,6 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Package
@@ -13,7 +12,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Package
 {
-    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -71,28 +69,5 @@ class Package
     {
         return $this->name;
     }
-
-    /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return Package
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
 }
+

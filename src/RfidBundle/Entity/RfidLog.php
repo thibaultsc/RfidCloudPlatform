@@ -3,6 +3,7 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * RfidLog
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RfidLog
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -47,7 +49,7 @@ class RfidLog
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\RfidLogType")

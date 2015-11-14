@@ -44,9 +44,16 @@ class ZoneType
     /**
      * @var boolean
      *
+     * @ORM\Column(name="available", type="boolean")
+     */
+    private $available;
+    
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
 
     /**

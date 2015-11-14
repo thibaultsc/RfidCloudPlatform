@@ -3,17 +3,15 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * Package
+ * Location
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Package
+class Location
 {
-    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -36,8 +34,7 @@ class Package
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled = true;
-    
-    
+
     /**
      * Get id
      *
@@ -53,7 +50,7 @@ class Package
      *
      * @param string $name
      *
-     * @return Package
+     * @return Location
      */
     public function setName($name)
     {
@@ -71,28 +68,5 @@ class Package
     {
         return $this->name;
     }
-
-    /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return Package
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
 }
+

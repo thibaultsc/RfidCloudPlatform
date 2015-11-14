@@ -3,6 +3,7 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * StoreType
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StoreType
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -46,7 +48,7 @@ class StoreType
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
 
     /**

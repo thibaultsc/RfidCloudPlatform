@@ -5,6 +5,7 @@ namespace RfidBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Table()
@@ -12,12 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    use TimestampableEntity;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
 
     public function __construct()
     {

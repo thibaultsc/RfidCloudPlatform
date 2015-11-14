@@ -2,6 +2,7 @@
 
 namespace RfidBundle\Entity;
 
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Device
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -33,7 +35,7 @@ class Device
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
      * @var string

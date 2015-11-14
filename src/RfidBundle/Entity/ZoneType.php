@@ -3,6 +3,7 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * StoreType
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ZoneType
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -44,9 +46,16 @@ class ZoneType
     /**
      * @var boolean
      *
+     * @ORM\Column(name="available", type="boolean")
+     */
+    private $available;
+    
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
 
     /**
@@ -154,5 +163,29 @@ class ZoneType
     public function getPrivate()
     {
         return $this->private;
+    }
+
+    /**
+     * Set available
+     *
+     * @param boolean $available
+     *
+     * @return ZoneType
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean
+     */
+    public function getAvailable()
+    {
+        return $this->available;
     }
 }
