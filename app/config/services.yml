@@ -4,6 +4,59 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    resource.user:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\User" ]
+        tags:      [ { name: "api.resource" } ]
+        
+    resource.retailer:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\Retailer" ]
+        tags:      [ { name: "api.resource" } ]
+
+    resource.package:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\Package" ]
+        tags:      [ { name: "api.resource" } ]
+        
+    resource.store:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\Store" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.location:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\Location" ]
+        tags:      [ { name: "api.resource" } ]  
+    resource.store_type:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\StoreType" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.zone:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\Zone" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.zone_type:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\ZoneType" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.device:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\Device" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.device_type:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\DeviceType" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.product:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\Product" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.rfid_log:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\RfidLog" ]
+        tags:      [ { name: "api.resource" } ]
+    resource.rfid_log_type:
+        parent:    "api.resource"
+        arguments: [ "RfidBundle\Entity\\RfidLogType" ]
+        tags:      [ { name: "api.resource" } ]
+
