@@ -107,3 +107,9 @@ dunglas_api:
                 number:                30               # The default number of items perm page in collections.
                 enable_client_request: true            # Allow the client to change the number of elements by page.
                 parameter_name:        itemsPerPage     # The name of the parameter to change the number of elements by page client side.
+                
+lexik_jwt_authentication:
+    private_key_path: %kernel.root_dir%/var/jwt/private.pem     
+    public_key_path:  %kernel.root_dir%/var/jwt/public.pem
+    pass_phrase:      Rfid2015
+    token_ttl:        86400
