@@ -31,18 +31,11 @@ class Device
     private $zone;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="enabled", type="boolean")
-     */
-    private $enabled = true;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="deviceRetailerId", type="string", length=255)
+     * @ORM\Column(name="reference", type="string", length=255)
      */
-    private $deviceRetailerId;
+    private $reference;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\DeviceType")
@@ -57,7 +50,14 @@ class Device
      */
     private $status;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled = true;
+    
+    
     /**
      * Get id
      *
@@ -116,29 +116,6 @@ class Device
         return $this->enabled;
     }
 
-    /**
-     * Set deviceRetailerId
-     *
-     * @param string $deviceRetailerId
-     *
-     * @return Device
-     */
-    public function setDeviceRetailerId($deviceRetailerId)
-    {
-        $this->deviceRetailerId = $deviceRetailerId;
-
-        return $this;
-    }
-
-    /**
-     * Get deviceRetailerId
-     *
-     * @return string
-     */
-    public function getDeviceRetailerId()
-    {
-        return $this->deviceRetailerId;
-    }
 
     /**
      * Set type
@@ -186,5 +163,29 @@ class Device
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Device
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 }

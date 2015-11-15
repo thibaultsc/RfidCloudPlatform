@@ -3,6 +3,7 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * store
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Store
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -28,6 +30,13 @@ class Store
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
+     */
+    private $reference;
+    
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Location")
      * @ORM\JoinColumn(nullable=true)
@@ -51,7 +60,7 @@ class Store
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
 
     /**
@@ -184,4 +193,3 @@ class Store
         return $this->enabled;
     }
 }
-

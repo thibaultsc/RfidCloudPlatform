@@ -2,6 +2,7 @@
 
 namespace RfidBundle\Entity;
 
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Device
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -33,14 +35,14 @@ class Device
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="deviceRetailerId", type="string", length=255)
+     * @ORM\Column(name="reference", type="string", length=255)
      */
-    private $deviceRetailerId;
+    private $reference;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\DeviceType")
@@ -51,7 +53,7 @@ class Device
     /**
      * @var integer
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
     private $status;
 
@@ -186,4 +188,3 @@ class Device
         return $this->status;
     }
 }
-

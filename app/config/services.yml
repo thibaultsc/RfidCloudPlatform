@@ -59,4 +59,11 @@ services:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\RfidLogType" ]
         tags:      [ { name: "api.resource" } ]
+        
+        
+    store_event_listener:
+        class: "RfidBundle\EventListener\StoreEventListener"
+        arguments: [ @doctrine ]
+        tags:  [ { name: "kernel.event_listener", event: "api.post_create", method: "onPostCreate" } ]
+        
 

@@ -8,14 +8,14 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                csrf_provider: security.csrf.token_manager
             logout:       true
             anonymous:    true
 

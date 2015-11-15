@@ -31,6 +31,13 @@ class Store
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
+     */
+    private $reference;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Location")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -184,5 +191,29 @@ class Store
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Store
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 }
