@@ -6,7 +6,7 @@ namespace RfidBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;    
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Table()
@@ -23,11 +23,8 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy = "AUTO")
      */
     protected $id;
-    /**
-     * @var array
-     *
-     */
     
+
     /**
      * Gets id.
      *

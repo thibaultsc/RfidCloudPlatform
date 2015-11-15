@@ -37,8 +37,6 @@ class RfidLog
      */
     private $epc;
 
-
-
     
     /**
      * @var integer
@@ -46,11 +44,11 @@ class RfidLog
      * 200 = Available
      * 300 = Reserved
      * 400 = Sold
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
-    private $status = 100;
+    private $status;
 
-    /**
+    /** 
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\RfidLogType")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -83,9 +81,9 @@ class RfidLog
     /**
      * @var boolean
      *
-     * @ORM\Column(name="inStock", type="boolean")
+     * @ORM\Column(name="damaged", type="boolean", nullable=true)
      */
-    private $damaged = false;
+    private $damaged;
     
     /**
      * @var boolean

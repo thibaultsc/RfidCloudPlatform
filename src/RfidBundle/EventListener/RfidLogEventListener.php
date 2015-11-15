@@ -34,6 +34,11 @@ class RfidLogEventListener
             // if any, set it to false
             if ($olderEnabled) {
                 $olderEnabled->setEnabled(false);
+                
+                if (null ===$object->getStatus()){$object->setStatus($olderEnabled->getStatus());}
+                if (null ===$object->getZone()){$object->setZone($olderEnabled->getZone());}
+                if (null === $object->getDamaged()){$object->setDamaged($olderEnabled->getDamaged());}
+                if (null ===$object->getProduct()){$object->setProduct($olderEnabled->getProduct());}
             }
             // if none, check if there is an newer one
             else
