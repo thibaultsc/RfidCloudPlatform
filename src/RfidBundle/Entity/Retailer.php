@@ -4,12 +4,14 @@ namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use RfidBundle\Validator\Constraints\ValidSelectedRetailer;
 
 /**
  * Retailer
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ValidSelectedRetailer
  */
 class Retailer
 {

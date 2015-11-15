@@ -38,5 +38,4 @@ security:
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: ROLE_RETAILER_ADMIN, methods: [DELETE] }
         - { path: ^/api/users, roles: ROLE_RETAILER_ADMIN }
-        - { path: ^/api/retailers, roles: ROLE_SUPER_ADMIN, methods: [POST] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

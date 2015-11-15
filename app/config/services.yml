@@ -71,3 +71,23 @@ services:
         tags:
             - { name: "kernel.event_listener", event: "api.pre_create", method: "onPreCreate"  }
 
+#Missing service to make sure that only the right retailers are showing
+    event_listener.doctrine.retailer_filter_manager:
+        class: "RfidBundle\EventListener\RetailerFilterManager"
+        arguments: [ "@doctrine.orm.entity_manager", "@security.token_storage", "@security.authorization_checker" ]
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.request" }
+            
+    validator.valid_selected_retailer:
+        class: RfidBundle\Validator\Constraints\ValidSelectedRetailerValidator
+        arguments: [ "@security.token_storage", "@security.authorization_checker" ]
+        tags:
+            - { name: validator.constraint_validator, alias: valid_selected_retailer }
+            
+            
+
+#   Used to add the roles in the authentification web service
+    event_listener.authentication_success_listener:
+        class: "RfidBundle\EventListener\AuthenticationSuccessListener"
+        tags:
+            - { name: "kernel.event_listener", event: "lexik_jwt_authentication.on_authentication_success", method: "onAuthenticationSuccessResponse" }
