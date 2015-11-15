@@ -9,7 +9,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  * RfidLog
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="RfidBundle\Entity\RfidLogRepository")
  */
 class RfidLog
 {
@@ -33,23 +33,22 @@ class RfidLog
     /**
      * @var string
      *
-     * @ORM\Column(name="epc", type="string", length=255,nullable=true)
+     * @ORM\Column(name="epc", type="string", length=255)
      */
     private $epc;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tid", type="string", length=255,nullable=true)
-     */
-    private $tid;
 
+
+    
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="enabled", type="boolean")
+     * @var integer
+     * 100 = Logitics
+     * 200 = Available
+     * 300 = Reserved
+     * 400 = Sold
+     * @ORM\Column(name="status", type="integer")
      */
-    private $enabled = true;
+    private $status = 100;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\RfidLogType")
@@ -86,7 +85,14 @@ class RfidLog
      *
      * @ORM\Column(name="inStock", type="boolean")
      */
-    private $inStock = true;
+    private $damaged = false;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled = true;
 
 
     /**
@@ -145,30 +151,6 @@ class RfidLog
     public function getEpc()
     {
         return $this->epc;
-    }
-
-    /**
-     * Set tid
-     *
-     * @param string $tid
-     *
-     * @return RfidLog
-     */
-    public function setTid($tid)
-    {
-        $this->tid = $tid;
-
-        return $this;
-    }
-
-    /**
-     * Get tid
-     *
-     * @return string
-     */
-    public function getTid()
-    {
-        return $this->tid;
     }
 
 
@@ -317,27 +299,52 @@ class RfidLog
         return $this->type;
     }
 
+
     /**
-     * Set inStock
+     * Set status
      *
-     * @param boolean $inStock
+     * @param integer $status
      *
      * @return RfidLog
      */
-    public function setInStock($inStock)
+    public function setStatus($status)
     {
-        $this->inStock = $inStock;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get inStock
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set damaged
+     *
+     * @param boolean $damaged
+     *
+     * @return RfidLog
+     */
+    public function setDamaged($damaged)
+    {
+        $this->damaged = $damaged;
+
+        return $this;
+    }
+
+    /**
+     * Get damaged
      *
      * @return boolean
      */
-    public function getInStock()
+    public function getDamaged()
     {
-        return $this->inStock;
+        return $this->damaged;
     }
 }

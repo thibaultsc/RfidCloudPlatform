@@ -82,9 +82,9 @@ class LoadData implements FixtureInterface
     
     // Package lists
     $rfidLogTypeArray = array(
-      array('Free'),
-      array('Pro'),
-      array('Unlimited')
+      array('Encoding'),
+      array('Inventory'),
+      array('Sold')
     );
 
     foreach ($rfidLogTypeArray as $rfidLogTypeElement) {

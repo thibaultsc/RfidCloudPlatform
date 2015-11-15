@@ -65,5 +65,9 @@ services:
         class: "RfidBundle\EventListener\StoreEventListener"
         arguments: [ @doctrine ]
         tags:  [ { name: "kernel.event_listener", event: "api.post_create", method: "onPostCreate" } ]
-        
+    event_listener.rfid_log:
+        class:     "RfidBundle\EventListener\RfidLogEventListener"
+        arguments: [ @doctrine ]
+        tags:
+            - { name: "kernel.event_listener", event: "api.pre_create", method: "onPreCreate"  }
 
