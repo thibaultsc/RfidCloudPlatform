@@ -4,8 +4,9 @@ security:
             algorithm: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+        ROLE_RETAILER_HQ:          ROLE_USER
+        ROLE_RETAILER_ADMIN:       ROLE_RETAILER_HQ
+        ROLE_SUPER_ADMIN:          ROLE_RETAILER_ADMIN
 
     providers:
         fos_userbundle:
@@ -35,7 +36,7 @@ security:
 
     access_control:
         - { path: ^/api/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: ROLE_ADMIN, methods: [DELETE] }
-        - { path: ^/api/duraltags, roles: ROLE_ADMIN }
-        - { path: ^/api/qr_code_generator, roles: ROLE_ADMIN }
+        - { path: ^/api, roles: ROLE_RETAILER_ADMIN, methods: [DELETE] }
+        - { path: ^/api/users, roles: ROLE_RETAILER_ADMIN }
+        - { path: ^/api/retailers, roles: ROLE_SUPER_ADMIN, methods: [POST] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
