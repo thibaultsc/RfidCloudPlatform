@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class ValidSelectedRetailer extends Constraint
 {
-    public $message = 'You are not authorized to select this retailer.';
+    public $message = 'You are not authorized to select this store or retailer';
     /**
      * {@inheritdoc}
      */

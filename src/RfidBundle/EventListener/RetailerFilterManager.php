@@ -40,11 +40,24 @@ class RetailerFilterManager
         if (!$user || !($user instanceof User) || $this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
             return;
         }
-        $ids = [];
+        
+        //check the authorized retailers
+        $retailerIds = [];
         foreach ($user->getRetailers() as $retailer) {
-            $ids[] = $this->entityManager->getConnection()->quote($retailer->getId());
+            $retailerIds[] = $this->entityManager->getConnection()->quote($retailer->getId());
         }
+
+        //check the authorized stores
+        $storeIds = [];
+        foreach ($user->getStores() as $store) {
+            $storeIds[] = $this->entityManager->getConnection()->quote($store->getId());
+        }
+        // apply to filter
         $filter = $this->entityManager->getFilters()->enable('retailer_filter');
-        $filter->setRetailerIds(implode(',', $ids));
+        $filter->setRetailerIds(implode(',', $retailerIds));
+        if (!$this->authorizationChecker->isGranted('ROLE_RETAILER_HQ')) {
+            $filter->setStoreIds(implode(',', $storeIds));
+        }
+        
     }
 }

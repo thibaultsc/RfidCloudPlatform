@@ -32,10 +32,18 @@ class User extends BaseUser
      */
     private $retailers;
     
+    /**
+     * @var Store[]
+     *
+     * @ORM\ManyToMany(targetEntity="Store")
+     */
+    private $stores;
+    
     public function __construct()
     {
         parent::__construct();
         $this->retailers = new ArrayCollection();
+        $this->stores = new ArrayCollection();
     }
     
     /**
@@ -88,5 +96,49 @@ class User extends BaseUser
     public function removeRetailer(\RfidBundle\Entity\Retailer $retailer)
     {
         $this->retailers->removeElement($retailer);
+    }
+
+    /**
+     * Add store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     *
+     * @return User
+     */
+    public function addStore(\RfidBundle\Entity\Store $store)
+    {
+        $this->stores[] = $store;
+
+        return $this;
+    }
+
+    /**
+     * Remove store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     */
+    public function removeStore(\RfidBundle\Entity\Store $store)
+    {
+        $this->stores->removeElement($store);
+    }
+
+    /**
+     * Get stores
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStores()
+    {
+        return $this->stores;
+    }
+        
+    /**
+     * Sets stores.
+     *
+     * @param Store[] $stores
+     */
+    public function setStores($stores)
+    {
+        $this->stores = $stores;
     }
 }

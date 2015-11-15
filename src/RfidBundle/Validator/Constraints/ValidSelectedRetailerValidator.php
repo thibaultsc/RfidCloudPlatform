@@ -2,6 +2,7 @@
 namespace RfidBundle\Validator\Constraints;
 
 use RfidBundle\Entity\Retailer;
+use RfidBundle\Entity\Store;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -38,9 +39,14 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
         if ($this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
             return;
         }
-
+        //If the user is allowed for the retailer, it can see it
         if ($value instanceof Retailer && $this->isRetailerAllowed($value)) {
             return;
+        }
+        if ($value instanceof Store && ($this->isStoreAllowed($value) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
+            if ($this->isRetailerAllowed($value->getRetailer())) {
+                return;
+            }
         }
 
         if ($value instanceof User) {
@@ -67,6 +73,23 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
     {
         foreach ($this->tokenStorage->getToken()->getUser()->getRetailers() as $userRetailer) {
             if ($retailer->getId() === $userRetailer->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Checks if the user is allowed for the given retailer.
+     *
+     * @param Store $store
+     *
+     * @return bool
+     */
+    private function isStoreAllowed(Store $store)
+    {
+        foreach ($this->tokenStorage->getToken()->getUser()->getStores() as $userStore) {
+            if ($store->getId() === $userStore->getId()) {
                 return true;
             }
         }

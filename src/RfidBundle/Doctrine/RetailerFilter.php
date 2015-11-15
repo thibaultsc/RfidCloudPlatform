@@ -14,6 +14,10 @@ class RetailerFilter extends SQLFilter
      */
     private $retailerIds;
     /**
+     * @var string
+     */
+    private $storeIds;
+    /**
      * Sets properly quoted retailer ids.
      *
      * @param string $retailerIds
@@ -23,6 +27,15 @@ class RetailerFilter extends SQLFilter
         $this->retailerIds = $retailerIds;
     }
     /**
+     * Sets properly quoted store ids.
+     *
+     * @param string $storeIds
+     */
+    public function setStoreIds($storeIds)
+    {
+        $this->storeIds = $storeIds;
+    }
+    /**
      * {@inheritdoc}
      */
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
@@ -30,6 +43,11 @@ class RetailerFilter extends SQLFilter
         switch ($targetEntity->getName()) {
             case 'RfidBundle\Entity\Retailer':
                 return sprintf('%s.id IN (%s)', $targetTableAlias, $this->retailerIds);
+            case 'RfidBundle\Entity\Store':
+                if (isset($this->storeIds))
+                {return sprintf('%s.id IN (%s)', $targetTableAlias, $this->storeIds);}
+                else
+                {return sprintf('%s.retailer_id IN (%s)', $targetTableAlias, $this->retailerIds);}  
         }
         return '';
     }
