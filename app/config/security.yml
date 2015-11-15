@@ -39,4 +39,5 @@ security:
         - { path: ^/api, roles: ROLE_RETAILER_ADMIN, methods: [DELETE] }
         - { path: ^/api/users, roles: ROLE_RETAILER_ADMIN }
         - { path: ^/api/stores, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/zones, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

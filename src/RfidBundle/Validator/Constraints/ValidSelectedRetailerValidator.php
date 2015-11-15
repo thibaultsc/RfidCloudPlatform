@@ -3,6 +3,7 @@ namespace RfidBundle\Validator\Constraints;
 
 use RfidBundle\Entity\Retailer;
 use RfidBundle\Entity\Store;
+use RfidBundle\Entity\Zone;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -44,6 +45,11 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
             return;
         }
         if ($value instanceof Store && ($this->isStoreAllowed($value) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
+            if ($this->isRetailerAllowed($value->getRetailer())) {
+                return;
+            }
+        }
+        if ($value instanceof Zone && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
             if ($this->isRetailerAllowed($value->getRetailer())) {
                 return;
             }
