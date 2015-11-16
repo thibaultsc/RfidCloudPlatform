@@ -58,6 +58,8 @@ class RetailerFilter extends SQLFilter
                 {return sprintf('%s.id IN (%s)', $targetTableAlias, $this->storeIds);}
                 else
                 {return sprintf('%s.retailer_id IN (%s)', $targetTableAlias, $this->retailerIds);}  
+            case 'RfidBundle\Entity\Product':
+                return sprintf('%s.retailer_id IN (%s)', $targetTableAlias, $this->retailerIds);
             case 'RfidBundle\Entity\Zone':
                 if (isset($this->storeIds))
                 {

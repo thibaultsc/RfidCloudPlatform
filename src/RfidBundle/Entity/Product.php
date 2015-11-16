@@ -24,6 +24,11 @@ class Product
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Retailer")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $retailer;
+    /**
      * @var string
      *
      * @ORM\Column(name="uniqueRetailerId", type="string", length=255)
@@ -372,5 +377,29 @@ class Product
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set retailer
+     *
+     * @param \RfidBundle\Entity\Retailer $retailer
+     *
+     * @return Product
+     */
+    public function setRetailer(\RfidBundle\Entity\Retailer $retailer)
+    {
+        $this->retailer = $retailer;
+
+        return $this;
+    }
+
+    /**
+     * Get retailer
+     *
+     * @return \RfidBundle\Entity\Retailer
+     */
+    public function getRetailer()
+    {
+        return $this->retailer;
     }
 }

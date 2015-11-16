@@ -64,6 +64,11 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
                 return;
             }
         }
+        if ($value instanceof Product && $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ')) {
+            if ($this->isRetailerAllowed($value->getRetailer())) {
+                return;
+            }
+        }
         
         // 3 levels going through stores
         if ($value instanceof Zone && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
