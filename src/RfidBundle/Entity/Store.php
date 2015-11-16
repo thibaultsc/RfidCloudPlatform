@@ -38,14 +38,14 @@ class Store
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=255, nullable=true)
-     * @Groups({"loc"})
+     * @Groups({"store"})
      */
     private $reference;
     
     /**
-     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Location")
+     * @ORM\OneToOne(targetEntity="RfidBundle\Entity\Location", mappedBy="store")
      * @ORM\JoinColumn(nullable=true)
-     * @Groups({"loc"})
+     * @Groups({"store"})
      */
     private $location;
 

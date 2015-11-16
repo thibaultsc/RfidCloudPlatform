@@ -4,6 +4,7 @@ namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Location
@@ -23,24 +24,31 @@ class Location
      */
     private $id;
 
+    
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="RfidBundle\Entity\Store", inversedBy="location")
+     * 
+     */
+    private $store;
+    
+    
+    
+    
     /**
      * @var string
      *
      * @ORM\Column(name="streetAddress", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $streetAddress;
     
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="$streetAddressAdditional", type="string", length=255, nullable=true)
-     */
-    private $streetAddressAdditional;
     
     /**
      * @var string
      *
      * @ORM\Column(name="postalCode", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $postalCode;
     
@@ -48,6 +56,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="postOfficeBoxNumber", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $postOfficeBoxNumber;
     
@@ -55,6 +64,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="addressRegion", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $addressRegion;
     
@@ -62,6 +72,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="addressLocality", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $addressLocality;
     
@@ -69,6 +80,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="addressCountry", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $addressCountry;
     
@@ -76,6 +88,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="latitude", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $latitude;
     
@@ -83,6 +96,7 @@ class Location
      * @var string
      *
      * @ORM\Column(name="longitude", type="string", length=255, nullable=true)
+     * @Groups({"store"})
      */
     private $longitude;
     
@@ -151,29 +165,6 @@ class Location
         return $this->streetAddress;
     }
 
-    /**
-     * Set streetAddressAdditional
-     *
-     * @param string $streetAddressAdditional
-     *
-     * @return Location
-     */
-    public function setStreetAddressAdditional($streetAddressAdditional)
-    {
-        $this->streetAddressAdditional = $streetAddressAdditional;
-
-        return $this;
-    }
-
-    /**
-     * Get streetAddressAdditional
-     *
-     * @return string
-     */
-    public function getStreetAddressAdditional()
-    {
-        return $this->streetAddressAdditional;
-    }
 
     /**
      * Set postalCode
@@ -341,5 +332,31 @@ class Location
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+
+
+    /**
+     * Set store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     *
+     * @return Location
+     */
+    public function setStore(\RfidBundle\Entity\Store $store = null)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * Get store
+     *
+     * @return \RfidBundle\Entity\Store
+     */
+    public function getStore()
+    {
+        return $this->store;
     }
 }

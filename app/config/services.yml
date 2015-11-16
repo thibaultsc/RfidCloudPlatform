@@ -24,9 +24,9 @@ services:
         arguments: [ "RfidBundle\Entity\Store" ]
         calls:
             -      method:    "initNormalizationContext"
-                   arguments: [ { groups: [ "loc" ] } ]
+                   arguments: [ { groups: [ "store" ] } ]
             -      method:    "initDenormalizationContext"
-                   arguments: [ { groups: [ "loc" ] } ]
+                   arguments: [ { groups: [ "store" ] } ]
         tags:      [ { name: "api.resource" } ]
     resource.location:
         parent:    "api.resource"

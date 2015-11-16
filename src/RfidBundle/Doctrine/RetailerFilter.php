@@ -102,7 +102,29 @@ SQL
 (SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.retailer_id IN (%s)) = 1
 SQL
                 , $targetTableAlias, $this->retailerIds);
-                }   
+                }  
+            case 'RfidBundle\Entity\Location':
+                if (isset($this->storeIds))
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->storeIds);
+                }
+                else
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.retailer_id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->retailerIds);
+                }  
+            case 'RfidBundle\Entity\User':
+                return sprintf(<<<'SQL'
+%1$s.roles NOT LIKE '%%ROLE_SUPER_ADMIN%%' AND %1$s.roles NOT LIKE '%%ROLE_SUPER_ADMIN%%'
+AND (SELECT COUNT(filterUserRetailer.user_id) FROM user_retailer filterUserRetailer WHERE filterUserRetailer.user_id = %1$s.id AND filterUserRetailer.retailer_id IN (%2$s)) = 1
+SQL
+                    , $targetTableAlias, $this->retailerIds);
+        
         }
         return '';
     }

@@ -81,7 +81,11 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
                 return;
             }
         }
-
+        if ($value instanceof Location && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
+            if ($this->isRetailerAllowed($value->getStore()->getRetailer())) {
+                return;
+            }
+        }
         //users
         if ($value instanceof User) {
             foreach ($value->getRetailers() as $retailer) {
