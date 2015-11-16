@@ -48,6 +48,7 @@ class RfidLogEventListener
                     $object->setEnabled(false);
                 }
             }
+            $object->setStore($object->getZone()->getStore());
         }
     }
 }

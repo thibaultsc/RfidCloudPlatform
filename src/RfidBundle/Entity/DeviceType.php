@@ -86,29 +86,6 @@ class DeviceType
     }
 
 
-    /**
-     * Set front
-     *
-     * @param boolean $front
-     *
-     * @return StoreType
-     */
-    public function setFront($front)
-    {
-        $this->front = $front;
-
-        return $this;
-    }
-
-    /**
-     * Get front
-     *
-     * @return boolean
-     */
-    public function getFront()
-    {
-        return $this->front;
-    }
 
     /**
      * Set enabled

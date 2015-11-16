@@ -4,6 +4,12 @@ namespace RfidBundle\Validator\Constraints;
 use RfidBundle\Entity\Retailer;
 use RfidBundle\Entity\Store;
 use RfidBundle\Entity\Zone;
+use RfidBundle\Entity\RfidLog;
+use RfidBundle\Entity\Device;
+use RfidBundle\Entity\StoreType;
+use RfidBundle\Entity\ZoneType;
+use RfidBundle\Entity\RfidLogType;
+use RfidBundle\Entity\DeviceType;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -44,17 +50,39 @@ class ValidSelectedRetailerValidator extends  ConstraintValidator
         if ($value instanceof Retailer && $this->isRetailerAllowed($value)) {
             return;
         }
+        
+        //types (2 level)
+        if ($value instanceof DeviceType || $value instanceof RfidLogType || $value instanceof StoreType || $value instanceof ZoneType ) {
+            if (null === $value->getPrivate() || $this->isRetailerAllowed($value->getPrivate())) {
+                return;
+            }
+        }
+        
+        //2 levels
         if ($value instanceof Store && ($this->isStoreAllowed($value) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
             if ($this->isRetailerAllowed($value->getRetailer())) {
                 return;
             }
         }
+        
+        // 3 levels going through stores
         if ($value instanceof Zone && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
-            if ($this->isRetailerAllowed($value->getRetailer())) {
+            if ($this->isRetailerAllowed($value->getStore()->getRetailer())) {
+                return;
+            }
+        }
+        if ($value instanceof RfidLog && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
+            if ($this->isRetailerAllowed($value->getStore()->getRetailer())) {
+                return;
+            }
+        }
+        if ($value instanceof Device && ($this->isStoreAllowed($value->getStore()) || $this->authorizationChecker->isGranted('ROLE_RETAILER_HQ'))) {
+            if ($this->isRetailerAllowed($value->getStore()->getRetailer())) {
                 return;
             }
         }
 
+        //users
         if ($value instanceof User) {
             foreach ($value->getRetailers() as $retailer) {
                 if ($this->isRetailerAllowed($retailer)) {

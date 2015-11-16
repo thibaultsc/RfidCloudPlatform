@@ -43,6 +43,16 @@ class RetailerFilter extends SQLFilter
         switch ($targetEntity->getName()) {
             case 'RfidBundle\Entity\Retailer':
                 return sprintf('%s.id IN (%s)', $targetTableAlias, $this->retailerIds);
+                
+            case 'RfidBundle\Entity\StoreType':
+                return sprintf('%s.private_id IN (%s) OR %s.private_id IS NULL', $targetTableAlias, $this->retailerIds, $targetTableAlias);    
+            case 'RfidBundle\Entity\ZoneType':
+                return sprintf('%s.private_id IN (%s) OR %s.private_id IS NULL', $targetTableAlias, $this->retailerIds, $targetTableAlias);    
+            case 'RfidBundle\Entity\RfidLogType':
+                return sprintf('%s.private_id IN (%s) OR %s.private_id IS NULL', $targetTableAlias, $this->retailerIds, $targetTableAlias);    
+            case 'RfidBundle\Entity\DeviceType':
+                return sprintf('%s.private_id IN (%s) OR %s.private_id IS NULL', $targetTableAlias, $this->retailerIds, $targetTableAlias);    
+                
             case 'RfidBundle\Entity\Store':
                 if (isset($this->storeIds))
                 {return sprintf('%s.id IN (%s)', $targetTableAlias, $this->storeIds);}
@@ -63,8 +73,38 @@ SQL
 SQL
                 , $targetTableAlias, $this->retailerIds);
                 } 
-
+            case 'RfidBundle\Entity\RfidLog':
+                if (isset($this->storeIds))
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->storeIds);
+                }
+                else
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.retailer_id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->retailerIds);
+                } 
+            case 'RfidBundle\Entity\Device':
+                if (isset($this->storeIds))
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->storeIds);
+                }
+                else
+                {
+                return sprintf(<<<SQL
+(SELECT COUNT(filterStore.id) FROM Store filterStore WHERE filterStore.id = %s.store_id AND filterStore.retailer_id IN (%s)) = 1
+SQL
+                , $targetTableAlias, $this->retailerIds);
+                }   
         }
         return '';
     }
+    
 }
