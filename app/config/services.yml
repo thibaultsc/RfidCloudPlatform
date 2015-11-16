@@ -22,11 +22,16 @@ services:
     resource.store:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\Store" ]
+        calls:
+            -      method:    "initNormalizationContext"
+                   arguments: [ { groups: [ "loc" ] } ]
+            -      method:    "initDenormalizationContext"
+                   arguments: [ { groups: [ "loc" ] } ]
         tags:      [ { name: "api.resource" } ]
     resource.location:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\Location" ]
-        tags:      [ { name: "api.resource" } ]  
+        tags:      [ { name: "api.resource" } ]          
     resource.store_type:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\StoreType" ]

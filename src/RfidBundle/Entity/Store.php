@@ -5,7 +5,7 @@ namespace RfidBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use RfidBundle\Validator\Constraints\ValidSelectedRetailer;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * store
  *
@@ -22,6 +22,7 @@ class Store
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"store"})
      */
     private $id;
 
@@ -29,6 +30,7 @@ class Store
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"store"})
      */
     private $name;
 
@@ -36,24 +38,28 @@ class Store
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=255, nullable=true)
+     * @Groups({"loc"})
      */
     private $reference;
     
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Location")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"loc"})
      */
     private $location;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\StoreType")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"store"})
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Retailer")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"store"})
      */
     private $retailer;
 
@@ -61,6 +67,7 @@ class Store
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean")
+     * @Groups({"store"})
      */
     private $enabled = true;
 
