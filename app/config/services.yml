@@ -7,6 +7,11 @@ services:
     resource.user:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\User" ]
+        calls:
+            -      method:    "initNormalizationContext"
+                   arguments: [ { groups: [ "user_read" ] } ]
+            -      method:    "initDenormalizationContext"
+                   arguments: [ { groups: [ "user_write" ] } ]
         tags:      [ { name: "api.resource" } ]
         
     resource.retailer:
