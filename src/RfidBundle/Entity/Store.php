@@ -65,6 +65,8 @@ class Store
     private $enabled = true;
 
 
+  
+
     /**
      * Get id
      *
@@ -80,7 +82,7 @@ class Store
      *
      * @param string $name
      *
-     * @return store
+     * @return Store
      */
     public function setName($name)
     {
@@ -97,102 +99,6 @@ class Store
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return store
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return store
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set retailer
-     *
-     * @param string $retailer
-     *
-     * @return store
-     */
-    public function setRetailer($retailer)
-    {
-        $this->retailer = $retailer;
-
-        return $this;
-    }
-
-    /**
-     * Get retailer
-     *
-     * @return string
-     */
-    public function getRetailer()
-    {
-        return $this->retailer;
-    }
-
-    /**
-     * Set enabled
-     *
-     * @param string $enabled
-     *
-     * @return store
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return string
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 
     /**
@@ -217,5 +123,101 @@ class Store
     public function getReference()
     {
         return $this->reference;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return Store
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \RfidBundle\Entity\Location $location
+     *
+     * @return Store
+     */
+    public function setLocation(\RfidBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \RfidBundle\Entity\Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \RfidBundle\Entity\StoreType $type
+     *
+     * @return Store
+     */
+    public function setType(\RfidBundle\Entity\StoreType $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \RfidBundle\Entity\StoreType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set retailer
+     *
+     * @param \RfidBundle\Entity\Retailer $retailer
+     *
+     * @return Store
+     */
+    public function setRetailer(\RfidBundle\Entity\Retailer $retailer)
+    {
+        $this->retailer = $retailer;
+
+        return $this;
+    }
+
+    /**
+     * Get retailer
+     *
+     * @return \RfidBundle\Entity\Retailer
+     */
+    public function getRetailer()
+    {
+        return $this->retailer;
     }
 }

@@ -3,15 +3,19 @@
 namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use RfidBundle\Validator\Constraints\ValidSelectedRetailer;
 
 /**
  * Retailer
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ValidSelectedRetailer
  */
 class Retailer
 {
+    use TimestampableEntity;
     /**
      * @var integer
      *
@@ -36,6 +40,7 @@ class Retailer
      */
     private $package;
     
+    
     /**
      * @var boolean
      *
@@ -43,61 +48,5 @@ class Retailer
      */
     private $enabled = true;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Retailer
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set package
-     *
-     * @param string $package
-     *
-     * @return Retailer
-     */
-    public function setPackage($package)
-    {
-        $this->package = $package;
-
-        return $this;
-    }
-
-    /**
-     * Get package
-     *
-     * @return string
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
+   
 }

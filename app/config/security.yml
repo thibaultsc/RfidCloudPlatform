@@ -40,4 +40,10 @@ security:
         - { path: ^/api/users, roles: ROLE_RETAILER_ADMIN }
         - { path: ^/api/stores, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
         - { path: ^/api/zones, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/store_types, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/device_types, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/rfid_log_types, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/zone_types, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/locations, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
+        - { path: ^/api/products, roles: ROLE_RETAILER_ADMIN, methods: [POST,PUT,DELETE] }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

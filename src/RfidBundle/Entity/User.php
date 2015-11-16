@@ -55,6 +55,7 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    
     /**
      * Gets retailers.
      *
@@ -74,58 +75,12 @@ class User extends BaseUser
         $this->retailers = $retailers;
     }
 
-    /**
-     * Add retailer
-     *
-     * @param \RfidBundle\Entity\Retailer $retailer
-     *
-     * @return User
-     */
-    public function addRetailer(\RfidBundle\Entity\Retailer $retailer)
-    {
-        $this->retailers[] = $retailer;
-
-        return $this;
-    }
+ 
 
     /**
-     * Remove retailer
+     * Gets stores.
      *
-     * @param \RfidBundle\Entity\Retailer $retailer
-     */
-    public function removeRetailer(\RfidBundle\Entity\Retailer $retailer)
-    {
-        $this->retailers->removeElement($retailer);
-    }
-
-    /**
-     * Add store
-     *
-     * @param \RfidBundle\Entity\Store $store
-     *
-     * @return User
-     */
-    public function addStore(\RfidBundle\Entity\Store $store)
-    {
-        $this->stores[] = $store;
-
-        return $this;
-    }
-
-    /**
-     * Remove store
-     *
-     * @param \RfidBundle\Entity\Store $store
-     */
-    public function removeStore(\RfidBundle\Entity\Store $store)
-    {
-        $this->stores->removeElement($store);
-    }
-
-    /**
-     * Get stores
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Store[]
      */
     public function getStores()
     {

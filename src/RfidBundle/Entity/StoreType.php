@@ -51,6 +51,7 @@ class StoreType
     private $enabled = true;
 
 
+
     /**
      * Get id
      *
@@ -84,7 +85,6 @@ class StoreType
     {
         return $this->name;
     }
-
 
     /**
      * Set front
@@ -137,11 +137,11 @@ class StoreType
     /**
      * Set private
      *
-     * @param string $private
+     * @param \RfidBundle\Entity\Retailer $private
      *
      * @return StoreType
      */
-    public function setPrivate($private)
+    public function setPrivate(\RfidBundle\Entity\Retailer $private = null)
     {
         $this->private = $private;
 
@@ -151,7 +151,7 @@ class StoreType
     /**
      * Get private
      *
-     * @return string
+     * @return \RfidBundle\Entity\Retailer
      */
     public function getPrivate()
     {

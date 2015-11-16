@@ -24,18 +24,16 @@ class Device
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="zone", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Zone")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $zone;
-
+    
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="enabled", type="boolean")
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Store")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $enabled = true;
+    private $store;
 
     /**
      * @var string
@@ -57,7 +55,14 @@ class Device
      */
     private $status;
 
-
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
+    private $enabled = true;
+    
+    
     /**
      * Get id
      *
@@ -116,29 +121,6 @@ class Device
         return $this->enabled;
     }
 
-    /**
-     * Set deviceRetailerId
-     *
-     * @param string $deviceRetailerId
-     *
-     * @return Device
-     */
-    public function setDeviceRetailerId($deviceRetailerId)
-    {
-        $this->deviceRetailerId = $deviceRetailerId;
-
-        return $this;
-    }
-
-    /**
-     * Get deviceRetailerId
-     *
-     * @return string
-     */
-    public function getDeviceRetailerId()
-    {
-        return $this->deviceRetailerId;
-    }
 
     /**
      * Set type
@@ -186,5 +168,53 @@ class Device
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     *
+     * @return Device
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     *
+     * @return Device
+     */
+    public function setStore(\RfidBundle\Entity\Store $store)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * Get store
+     *
+     * @return \RfidBundle\Entity\Store
+     */
+    public function getStore()
+    {
+        return $this->store;
     }
 }

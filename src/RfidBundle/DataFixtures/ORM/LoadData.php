@@ -10,12 +10,18 @@ use RfidBundle\Entity\ZoneType;
 use RfidBundle\Entity\DeviceType;
 use RfidBundle\Entity\Package;
 use RfidBundle\Entity\RfidLogType;
+use RfidBundle\Entity\User;
+use RfidBundle\Entity\Retailer;
+use RfidBundle\Entity\Store;
 
 class LoadData implements FixtureInterface
 {
   // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
   public function load(ObjectManager $manager)
   {
+
+
+    
     // Store stypes lists
     $storeTypeArray = array(
       array('Store',true),
@@ -35,7 +41,7 @@ class LoadData implements FixtureInterface
     
     // Zone stypes lists
     $zoneTypeArray = array(
-      array('Sales Floor',true, true),
+      array('SalesFloor',true, true),
       array('Back room',false, true),
       array('Transit',false, false),
       array('Sold', false, false)
@@ -94,7 +100,7 @@ class LoadData implements FixtureInterface
       $manager->persist($rfidLogType);
     }
     
-    
+   
     // On déclenche l'enregistrement de toutes les catégories
     $manager->flush();
   }

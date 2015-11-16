@@ -48,6 +48,8 @@ class Retailer
      */
     private $enabled = true;
 
+   
+
     /**
      * Get id
      *
@@ -83,30 +85,6 @@ class Retailer
     }
 
     /**
-     * Set package
-     *
-     * @param string $package
-     *
-     * @return Retailer
-     */
-    public function setPackage($package)
-    {
-        $this->package = $package;
-
-        return $this;
-    }
-
-    /**
-     * Get package
-     *
-     * @return string
-     */
-    public function getPackage()
-    {
-        return $this->package;
-    }
-
-    /**
      * Set enabled
      *
      * @param boolean $enabled
@@ -128,5 +106,29 @@ class Retailer
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set package
+     *
+     * @param \RfidBundle\Entity\Package $package
+     *
+     * @return Retailer
+     */
+    public function setPackage(\RfidBundle\Entity\Package $package)
+    {
+        $this->package = $package;
+
+        return $this;
+    }
+
+    /**
+     * Get package
+     *
+     * @return \RfidBundle\Entity\Package
+     */
+    public function getPackage()
+    {
+        return $this->package;
     }
 }

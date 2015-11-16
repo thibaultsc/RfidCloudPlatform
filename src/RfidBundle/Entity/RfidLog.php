@@ -56,10 +56,16 @@ class RfidLog
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Zone")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $zone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Store")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $store;
+    
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\RfidLogType")
      * @ORM\JoinColumn(nullable=true)
@@ -344,5 +350,29 @@ class RfidLog
     public function getDamaged()
     {
         return $this->damaged;
+    }
+
+    /**
+     * Set store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     *
+     * @return RfidLog
+     */
+    public function setStore(\RfidBundle\Entity\Store $store)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * Get store
+     *
+     * @return \RfidBundle\Entity\Store
+     */
+    public function getStore()
+    {
+        return $this->store;
     }
 }

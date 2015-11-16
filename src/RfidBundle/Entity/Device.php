@@ -24,11 +24,16 @@ class Device
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="zone", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Zone")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $zone;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Store")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $store;
 
     /**
      * @var string
@@ -187,5 +192,29 @@ class Device
     public function getReference()
     {
         return $this->reference;
+    }
+
+    /**
+     * Set store
+     *
+     * @param \RfidBundle\Entity\Store $store
+     *
+     * @return Device
+     */
+    public function setStore(\RfidBundle\Entity\Store $store)
+    {
+        $this->store = $store;
+
+        return $this;
+    }
+
+    /**
+     * Get store
+     *
+     * @return \RfidBundle\Entity\Store
+     */
+    public function getStore()
+    {
+        return $this->store;
     }
 }
