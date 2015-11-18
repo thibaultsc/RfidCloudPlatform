@@ -10,46 +10,9 @@ namespace RfidBundle\Entity;
  */
 class RfidLogRepository extends \Doctrine\ORM\EntityRepository
 {
+
     /**
-     * Disables all matching.
-     */
-    public function disableMatching(RfidLog $rfidLog)
-    {
-        $queryBuilder = $this
-            ->_em
-            ->createQueryBuilder()
-            ->update($this->_entityName, 'rl')
-            ->set('rl.enabled', ':enabled')
-            ->setParameter('enabled', false)
-            ->where('rl.epc = :epc')
-            ->andWhere('rl.enabled = true')
-            ->setParameter('epc', $rfidLog->getEpc())
-        ;
-        return $queryBuilder->getQuery()->execute();
-    }
-    
-    /**
-     * Disables all matching.
-     */
-    public function keepLatest(RfidLog $rfidLog)
-    {
-        $queryBuilder = $this
-            ->_em
-            ->createQueryBuilder()
-            ->update($this->_entityName, 'rl')
-            ->set('rl.enabled', ':enabled')
-            ->setParameter('enabled', false)
-            ->where('rl.epc = :epc')
-            ->andWhere('rl.enabled = true')
-            ->andWhere('rl.timeStamp < :timeStamp')
-            ->setParameter('epc', $rfidLog->getEpc())
-            ->setParameter('timeStamp', $rfidLog->getTimeStamp())
-        ;
-        return $queryBuilder->getQuery()->execute();
-    }
-    
-    /**
-     * Disables all matching.
+     * Retrive the older enabled log with the same EPC
      */
     public function getOlderEnabledByEpc(RfidLog $rfidLog)
     {
@@ -65,7 +28,7 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
         return $olderEnabled;
     }
     /**
-     * Disables all matching.
+     * Retrive the enabled log with the same EPC
      */
     public function getEnabledByEpc(RfidLog $rfidLog)
     {

@@ -61,15 +61,47 @@ services:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\Product" ]
         tags:      [ { name: "api.resource" } ]
+        
+    resource.rfid_log.collection_operation.get:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.rfid_log", "GET" ]
+        
+    resource.rfid_log.collection_operation.post:
+        class:     "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:    false
+        factory:   [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments: [ "@resource.rfid_log", "POST" ]
+
+    resource.rfid_log.collection_operation.stock_get:
+        class:   "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:  false
+        factory: [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments:
+            -    "@resource.rfid_log"
+            -    "GET"
+            -    "/stocks"
+            -    "RfidBundle:Stock:stockGet"
+            -    "stock_get"
+        
     resource.rfid_log:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\RfidLog" ]
+        calls:
+            -      method:    "initCollectionOperations"
+                   arguments: [ [ "@resource.rfid_log.collection_operation.get", "@resource.rfid_log.collection_operation.post", "@resource.rfid_log.collection_operation.stock_get" ] ]
         tags:      [ { name: "api.resource" } ]
+        
+        
     resource.rfid_log_type:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\RfidLogType" ]
         tags:      [ { name: "api.resource" } ]
-        
+
+
+
+
     store_event_listener:
         class: "RfidBundle\EventListener\StoreEventListener"
         arguments: [ @doctrine ]
@@ -101,3 +133,4 @@ services:
         class: "RfidBundle\EventListener\AuthenticationSuccessListener"
         tags:
             - { name: "kernel.event_listener", event: "lexik_jwt_authentication.on_authentication_success", method: "onAuthenticationSuccessResponse" }
+    
