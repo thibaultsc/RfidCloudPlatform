@@ -41,4 +41,43 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
         $enabled = $queryBuilder->getQuery()->getOneOrNullResult();
         return $enabled;
     }
+    
+    /**
+     * Create the enabled queryBuilder
+     */
+    public function rfidLogQueryBuilder()
+    {
+        $queryBuilder = $this
+            ->createQueryBuilder('rl')
+            ->select('count(rl) as stock')
+            ->innerJoin('rl.product', 'p')
+            ->addSelect('p.ean')
+            ->where('rl.enabled = true')
+            ->groupBy('p.ean')
+        ;
+        $enabled = $queryBuilder->getQuery()->getResult();
+        return $enabled;
+    }
+    
+    /**
+     * Create the enabled queryBuilder
+     */
+    public function rfidLogQueryBuilder2()
+    {
+        return $queryBuilder = $this
+            ->createQueryBuilder('rl')
+            ->select('count(rl) as stock')
+            ->leftJoin('rl.product', 'p')
+            ->leftJoin('rl.store', 's')
+            ->leftJoin('s.type', 'st')
+            ->leftJoin('rl.zone', 'z')
+            ->leftJoin('z.type', 'zt')
+            ->addSelect('p.ean')
+            ->andWhere('rl.enabled = true')
+            ->addGroupBy('p.ean')
+        ;
+        
+        
+    }
+    
 }

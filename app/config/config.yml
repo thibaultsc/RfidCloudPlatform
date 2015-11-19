@@ -105,7 +105,7 @@ dunglas_api:
     collection:
         filter_name:
             order:   "order"                            # Keyword used for the order filter
-        order:       null                               # The default order of results. (supported by Doctrine: ASC and DESC)
+        order:       DESC                               # The default order of results. (supported by Doctrine: ASC and DESC)
         pagination:
             page_parameter_name:       page             # The name of the parameter handling the page number.
             items_per_page:
