@@ -80,7 +80,7 @@ services:
         factory: [ "@api.operation_factory", "createCollectionOperation" ]
         arguments:
             -    "@resource.rfid_log"
-            -    ["OPTIONS", "GET"]
+            -    "GET"
             -    "/stocks"
             -    "RfidBundle:Stock:stockGet"
             -    "stock_get"
@@ -90,7 +90,7 @@ services:
         factory: [ "@api.operation_factory", "createCollectionOperation" ]
         arguments:
             -    "@resource.rfid_log"
-            -    ["OPTIONS","GET"]
+            -    "GET"
             -    "/global_stocks"
             -    "RfidBundle:Stock:gStockGet"
             -    "gstock_get"
@@ -144,8 +144,3 @@ services:
         tags:
             - { name: "kernel.event_listener", event: "lexik_jwt_authentication.on_authentication_success", method: "onAuthenticationSuccessResponse" }
 
-#   TO BE DELETED WITH ASSOCIATED LISTENER
-    app.cors_listener:
-        class:      RfidBundle\EventListener\CorsListener
-        tags:
-            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
