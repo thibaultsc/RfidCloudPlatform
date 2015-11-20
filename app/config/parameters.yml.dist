@@ -15,6 +15,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     pass_phrase: Rfid2015
+    cors_allow_origin: "http://localhost:9000"
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt

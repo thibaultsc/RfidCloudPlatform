@@ -79,5 +79,20 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
         
         
     }
+    public function gRfidLogQueryBuilder()
+    {
+        return $queryBuilder = $this
+            ->createQueryBuilder('rl')
+            ->select('count(rl) as stock')
+            ->leftJoin('rl.product', 'p')
+            ->leftJoin('rl.store', 's')
+            ->leftJoin('s.type', 'st')
+            ->leftJoin('rl.zone', 'z')
+            ->leftJoin('z.type', 'zt')
+            ->andWhere('rl.enabled = true')
+        ;
+        
+        
+    }
     
 }

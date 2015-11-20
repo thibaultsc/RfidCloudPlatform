@@ -80,17 +80,27 @@ services:
         factory: [ "@api.operation_factory", "createCollectionOperation" ]
         arguments:
             -    "@resource.rfid_log"
-            -    "GET"
+            -    ["OPTIONS", "GET"]
             -    "/stocks"
             -    "RfidBundle:Stock:stockGet"
             -    "stock_get"
+    resource.rfid_log.collection_operation.gstock_get:
+        class:   "Dunglas\ApiBundle\Api\Operation\Operation"
+        public:  false
+        factory: [ "@api.operation_factory", "createCollectionOperation" ]
+        arguments:
+            -    "@resource.rfid_log"
+            -    ["OPTIONS","GET"]
+            -    "/global_stocks"
+            -    "RfidBundle:Stock:gStockGet"
+            -    "gstock_get"
         
     resource.rfid_log:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\RfidLog" ]
         calls:
             -      method:    "initCollectionOperations"
-                   arguments: [ [ "@resource.rfid_log.collection_operation.get", "@resource.rfid_log.collection_operation.post", "@resource.rfid_log.collection_operation.stock_get" ] ]
+                   arguments: [ [ "@resource.rfid_log.collection_operation.get", "@resource.rfid_log.collection_operation.post", "@resource.rfid_log.collection_operation.stock_get", "@resource.rfid_log.collection_operation.gstock_get" ] ]
         tags:      [ { name: "api.resource" } ]
         
         
@@ -133,4 +143,9 @@ services:
         class: "RfidBundle\EventListener\AuthenticationSuccessListener"
         tags:
             - { name: "kernel.event_listener", event: "lexik_jwt_authentication.on_authentication_success", method: "onAuthenticationSuccessResponse" }
-    
+
+#   TO BE DELETED WITH ASSOCIATED LISTENER
+    app.cors_listener:
+        class:      RfidBundle\EventListener\CorsListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

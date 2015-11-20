@@ -66,6 +66,7 @@ class User extends BaseUser
      * @var Retailer[]
      *
      * @ORM\ManyToMany(targetEntity="Retailer")
+     * @Groups({"user_read", "user_write"})
      */
     private $retailers;
     
@@ -73,6 +74,7 @@ class User extends BaseUser
      * @var Store[]
      *
      * @ORM\ManyToMany(targetEntity="Store")
+     * @Groups({"user_read", "user_write"})
      */
     private $stores;
     

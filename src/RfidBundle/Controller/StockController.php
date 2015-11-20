@@ -55,4 +55,38 @@ class StockController extends ResourceController
         //return new Response($csv, 200, ['Content-Type' => 'text/csv']);
         return $this->getSuccessResponse($resource, $stock, 200, [], ['request_uri' => $request->getRequestUri()]);
     }
+    
+    
+    public function gStockGetAction(Request $request)
+    {
+        $doctrine = $this->getDoctrine();
+        $queryBuilder = $doctrine->getRepository('RfidBundle:RfidLog')->gRfidLogQueryBuilder();
+        $group = $request->query->get('groupBy');
+        $groupName = $request->query->get('name');
+        $where = $request->query->get('where');
+        $equals = $request->query->get('equals');
+        
+        if ($group !== null && $groupName !== null) {
+            $j = 0;
+            foreach ($group as $groupElement) {
+                $querybuilder = $queryBuilder->addGroupBy($groupElement)->addSelect($groupElement." as ".$groupName[$j]);
+                $j++;
+            }
+        }
+        
+        if ($where !== null && $equals !== null) {
+            $i = 0;
+            foreach ($where as $whereElement) {
+                $querybuilder = $queryBuilder->andWhere($whereElement.' = :value'.$i)->setParameter('value'.$i,$equals[$i]);
+                $i++;
+            }
+        }       
+
+        $stock = $queryBuilder->getQuery()->getResult();
+        
+        $resource = $this->getResource($request);
+        $uri = $request->getRequestUri();
+        //return new Response($csv, 200, ['Content-Type' => 'text/csv']);
+        return $this->getSuccessResponse($resource, $stock, 200, [], ['request_uri' => $request->getRequestUri()]);
+    }
 }

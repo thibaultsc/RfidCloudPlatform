@@ -130,3 +130,11 @@ nelmio_api_doc:
                 json:       "application/json"
 
 
+# Nelmio CORS
+nelmio_cors:
+    paths:
+        "^/api":
+            allow_origin: ["%cors_allow_origin%"]
+            allow_methods: ["POST", "PUT", "GET", "DELETE", "OPTIONS"]
+            allow_headers: ["content-type", "authorization"]
+            max_age: 3600
