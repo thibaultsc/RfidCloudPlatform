@@ -42,7 +42,7 @@ class LoadData implements FixtureInterface
     // Zone stypes lists
     $zoneTypeArray = array(
       array('SalesFloor',true, true),
-      array('Back room',false, true),
+      array('BackRoom',false, true),
       array('Transit',false, false),
       array('Sold', false, false)
     );

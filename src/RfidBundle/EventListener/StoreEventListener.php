@@ -35,8 +35,8 @@ class StoreEventListener
             
             // Store stypes lists
             $zoneArray = array( 
-                array('Sales Floor'),
-                array('Back room'),
+                array('SalesFloor'),
+                array('BackRoom'),
                 array('Transit'),
                 array('Sold')
             );
