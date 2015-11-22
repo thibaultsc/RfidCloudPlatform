@@ -4,6 +4,7 @@ namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * StoreType
@@ -27,6 +28,7 @@ class StoreType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"store"})
      */
     private $name;
 

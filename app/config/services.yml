@@ -44,6 +44,11 @@ services:
     resource.zone:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\Zone" ]
+        calls:
+            -      method:    "initNormalizationContext"
+                   arguments: [ { groups: [ "zone" ] } ]
+            -      method:    "initDenormalizationContext"
+                   arguments: [ { groups: [ "zone" ] } ]
         tags:      [ { name: "api.resource" } ]
     resource.zone_type:
         parent:    "api.resource"

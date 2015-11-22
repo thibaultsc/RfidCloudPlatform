@@ -49,7 +49,7 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
     {
         $queryBuilder = $this
             ->createQueryBuilder('rl')
-            ->select('count(rl) as stock')
+            ->select('count(rl) as value')
             ->innerJoin('rl.product', 'p')
             ->addSelect('p.ean')
             ->where('rl.enabled = true')
@@ -66,7 +66,7 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
     {
         return $queryBuilder = $this
             ->createQueryBuilder('rl')
-            ->select('count(rl) as stock')
+            ->select('count(rl) as value')
             ->leftJoin('rl.product', 'p')
             ->leftJoin('rl.store', 's')
             ->leftJoin('s.type', 'st')

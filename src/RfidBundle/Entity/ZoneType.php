@@ -4,6 +4,7 @@ namespace RfidBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * StoreType
@@ -27,12 +28,14 @@ class ZoneType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"zone"})
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="RfidBundle\Entity\Retailer")
      * @ORM\JoinColumn(nullable=true)
+     * @Groups({"zone"})
      */
     private $private;
 
@@ -40,6 +43,7 @@ class ZoneType
      * @var boolean
      *
      * @ORM\Column(name="front", type="boolean")
+     * @Groups({"zone"})
      */
     private $front;
 
@@ -47,6 +51,7 @@ class ZoneType
      * @var boolean
      *
      * @ORM\Column(name="available", type="boolean")
+     * @Groups({"zone"})
      */
     private $available;
     
