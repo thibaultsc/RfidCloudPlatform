@@ -83,7 +83,7 @@ class RfidLogRepository extends \Doctrine\ORM\EntityRepository
     {
         return $queryBuilder = $this
             ->createQueryBuilder('rl')
-            ->select('count(rl) as stock')
+            ->select('count(rl) as value')
             ->leftJoin('rl.product', 'p')
             ->leftJoin('rl.store', 's')
             ->leftJoin('s.type', 'st')
