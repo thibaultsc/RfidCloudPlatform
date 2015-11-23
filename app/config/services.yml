@@ -41,6 +41,11 @@ services:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\StoreType" ]
         tags:      [ { name: "api.resource" } ]
+    
+    "resource.zone.search_filter":
+        parent:    "api.doctrine.orm.search_filter"
+        arguments: [ { "id": "exact", "store": "exact" } ] 
+        
     resource.zone:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\Zone" ]
@@ -49,14 +54,23 @@ services:
                    arguments: [ { groups: [ "zone" ] } ]
             -      method:    "initDenormalizationContext"
                    arguments: [ { groups: [ "zone" ] } ]
+            -      method:    "initFilters"
+                   arguments: [ [ "@resource.zone.search_filter" ] ]
         tags:      [ { name: "api.resource" } ]
     resource.zone_type:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\ZoneType" ]
         tags:      [ { name: "api.resource" } ]
+        
+    "resource.device.search_filter":
+        parent:    "api.doctrine.orm.search_filter"
+        arguments: [ { "id": "exact", "store": "exact" } ] 
     resource.device:
         parent:    "api.resource"
         arguments: [ "RfidBundle\Entity\\Device" ]
+        calls:
+            -      method:    "initFilters"
+                   arguments: [ [ "@resource.device.search_filter" ] ]
         tags:      [ { name: "api.resource" } ]
     resource.device_type:
         parent:    "api.resource"
